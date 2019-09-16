@@ -22,6 +22,10 @@ class BookInstanceAdmin(admin.ModelAdmin):
     """Admin class for the BookInstance model."""
 
     list_filter = ('status', 'due_back')
+    fieldsets = (
+        (None, {'fields': ('book', 'imprint', 'id')}),
+        ('Availability', {'fields': ('status', 'due_back')}),
+    )
 
 
 admin.site.register(Genre)
