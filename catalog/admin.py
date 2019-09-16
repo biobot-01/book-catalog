@@ -13,7 +13,7 @@ class AuthorAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     """Admin class for the Book model."""
 
-    pass
+    list_display = ('title', 'author', 'display_genre')
 
 
 @admin.register(BookInstance)
