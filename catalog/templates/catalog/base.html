@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'catalog/css/main.css' %}">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-2">
+        {% block sidebar %}
+          <ul class="sidebar-nav">
+            <li>
+              <a href="{% url 'catalog:index' %}">Home</a>
+            </li>
+            <li>
+              <a href="#">All books</a>
+            </li>
+            <li>
+              <a href="#">All authors</a>
+            </li>
+          </ul>
+        {% endblock %}
+      </aside>
+
+      <main class="col-md-10">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+</body>
+</html>
