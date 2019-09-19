@@ -10,11 +10,18 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
 
 
+class BooksInstanceInline(admin.TabularInline):
+    """Add BookInstance information inline to Book Admin."""
+
+    model = BookInstance
+
+
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     """Admin class for the Book model."""
 
     list_display = ('title', 'author', 'display_genre')
+    inlines = [BooksInstanceInline]
 
 
 @admin.register(BookInstance)
