@@ -2,12 +2,19 @@ from django.contrib import admin
 from .models import Author, Book, BookInstance, Genre, Language
 
 
+class BooksInline(admin.TabularInline):
+    """Add Book information inline to Author Admin."""
+
+    model = Book
+
+
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     """Admin class for the Author model."""
 
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+    inlines = [BooksInline]
 
 
 class BooksInstanceInline(admin.TabularInline):
