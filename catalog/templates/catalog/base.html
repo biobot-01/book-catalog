@@ -2,8 +2,8 @@
 <html class="no-js" lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}{% endblock %}</title>
-  <meta name="description" content="{% block description %}{% endblock %}">
+  <title>{% block title %}Local Library{% endblock %}</title>
+  <meta name="description" content="MDN Django Tutorial - LocalLibrary">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="manifest" href="site.webmanifest">
@@ -20,25 +20,40 @@
 <body>
   <div class="container">
     <div class="row">
-      <aside class="col-md-2">
+      <div class="col-sm-12">
+        <header>
+          <a class="logo" href="https://github.com/biobot-01/book-catalog">Book Catalog</a>
+        </header>
+      </div>
+    </div>
+
+    <div class="row">
+      <aside class="col-sm-12 col-md-2">
         {% block sidebar %}
-          <ul class="sidebar-nav">
-            <li>
-              <a href="{% url 'catalog:index' %}">Home</a>
-            </li>
-            <li>
-              <a href="#">All books</a>
-            </li>
-            <li>
-              <a href="#">All authors</a>
-            </li>
-          </ul>
+          <nav>
+            <a href="{% url 'catalog:index' %}">Home</a>
+            <a href="{% url 'catalog:books' %}">All books</a>
+            <a href="#">All authors</a>
+          </nav>
         {% endblock %}
       </aside>
 
-      <main class="col-md-10">
-        {% block content %}{% endblock %}
+      <main class="col-sm-12 col-md-10">
+        <article>
+          <section class="container">
+            {% block content %}{% endblock %}
+          </section>
+        </article>
       </main>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <footer>
+          <p>MDN Django Tutorial - LocalLibrary</p>
+          <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website">Go to tutorial</a>
+        </footer>
+      </div>
     </div>
   </div>
 </body>
