@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 from catalog.models import Author, Book, BookInstance, Genre
 
 
@@ -24,3 +25,17 @@ def index(request):
     }
     # Render the html template index.html with the data in the context variable
     return render(request, 'catalog/index.html', context=context)
+
+
+class BookListView(generic.ListView):
+    """View class for books page of site."""
+
+    model = Book
+    context_object_name = 'book_list'
+    queryset = Book.objects.filter(title__icontains='the')[:5]
+
+
+class BookDetailView(generic.DetailView):
+    """View class for book detail page of site."""
+
+    model = Book

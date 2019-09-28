@@ -1,0 +1,20 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ block.super }} | Book List{% endblock %}
+
+{% block content %}
+  <h1>Book List</h1>
+  <p>Display 5 books containing the title &#34;the&#34;</p>
+
+  {% if book_list %}
+    <ul>
+      {% for book in book_list %}
+        <li>
+          <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.author }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no books in the library.</p>
+  {% endif %}
+{% endblock %}
