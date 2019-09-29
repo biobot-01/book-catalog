@@ -33,6 +33,7 @@ class BookListView(generic.ListView):
     model = Book
     context_object_name = 'book_list'
     queryset = Book.objects.filter(title__icontains='the')[:5]
+    paginate_by = 10
 
 
 class BookDetailView(generic.DetailView):
