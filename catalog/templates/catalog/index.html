@@ -3,29 +3,31 @@
 {% block title %}{{ block.super }} | Home{% endblock %}
 
 {% block content %}
-  <h1>
+  <h1 class="section double-padded">
     <small>Welcome to</small> LocalLibrary
   </h1>
 
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li>
-      <strong>Books:</strong> {{ books_count }}
-    </li>
-    <li>
-      <strong>Copies:</strong> {{ instances_count }}
-    </li>
-    <li>
-      <strong>Copies available:</strong> {{ instances_available_count }}
-    </li>
-    <li>
-      <strong>Authors:</strong> {{ authors_count }}
-    </li>
-    <li>
-      <strong>Genres:</strong> {{ genres_count }}
-    </li>
-    <li>
-      <strong>Books with the word "the":</strong> {{ books_word_match_count }}
-    </li>
-  </ul>
+  <div class="section">
+    <p>The library has the following record counts:</p>
+    <ul>
+      <li>
+        <strong>Books:</strong> {{ books_count }}
+      </li>
+      <li>
+        <strong>Copies:</strong> {{ instances_count }}
+      </li>
+      <li>
+        <strong>Copies available:</strong> {{ instances_available_count }}
+      </li>
+      <li>
+        <strong>Authors:</strong> {{ authors_count }}
+      </li>
+      <li>
+        <strong>Genres:</strong> {{ genres_count }}
+      </li>
+      <li>
+        <strong>Books with the word "the":</strong> {{ books_word_match_count }}
+      </li>
+    </ul>
+  </div>
 {% endblock %}

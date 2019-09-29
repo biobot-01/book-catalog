@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+  <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-dark.min.css">
   {% load static %}
   <link rel="stylesheet" href="{% static 'catalog/css/main.css' %}">
 
@@ -18,61 +18,49 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <header>
-          <a class="logo" href="https://github.com/biobot-01/book-catalog">Book Catalog</a>
-        </header>
-      </div>
-    </div>
+  <header class="row">
+    <a class="logo col-sm-4" href="https://github.com/biobot-01/book-catalog">Book Catalog</a>
+  </header>
 
-    <div class="row">
-      <aside class="col-sm-12 col-md-2">
-        {% block sidebar %}
-          <nav>
-            <a href="{% url 'catalog:index' %}">Home</a>
-            <a href="{% url 'catalog:books' %}">All books</a>
-            <a href="#">All authors</a>
-          </nav>
+  <div class="row">
+    <aside class="col-sm-12 col-md-3 col-lg-2">
+      {% block sidebar %}
+        <nav>
+          <a href="{% url 'catalog:index' %}">Home</a>
+          <a href="{% url 'catalog:books' %}">All books</a>
+          <a href="#">All authors</a>
+        </nav>
+      {% endblock %}
+    </aside>
+
+    <main class="col-sm-12 col-md-9 col-lg-10">
+      <article class="card fluid">
+        {% block content %}{% endblock %}
+
+        {% block pagination %}
+          {% if is_paginated %}
+            <div class="row">
+              <div class="col-sm-12 col-md-8 col-md-offset-1">
+                {% if page_obj.has_previous %}
+                  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+
+                {% if page_obj.has_next %}
+                  <a href="{{ request.path }}?page={{ page_obj.next_page_number}}">next</a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
         {% endblock %}
-      </aside>
-
-      <main class="col-sm-12 col-md-10">
-        <article>
-          <section class="container">
-            {% block content %}{% endblock %}
-
-            {% block pagination %}
-              {% if is_paginated %}
-                <div class="row">
-                  <div class="col-sm-12 col-md-8 col-md-offset-1">
-                    {% if page_obj.has_previous %}
-                      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
-
-                    {% if page_obj.has_next %}
-                      <a href="{{ request.path }}?page={{ page_obj.next_page_number}}">next</a>
-                    {% endif %}
-                  </div>
-                </div>
-              {% endif %}
-            {% endblock %}
-          </section>
-        </article>
-      </main>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12">
-        <footer>
-          <p>MDN Django Tutorial - LocalLibrary</p>
-          <a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website">Go to tutorial</a>
-        </footer>
-      </div>
-    </div>
+      </article>
+    </main>
   </div>
+
+  <footer class="row">
+    <span class="col-sm-12 col-md-4 col-lg-3">MDN Django Tutorial - LocalLibrary</span>
+    <a class="col-sm-12 col-md-2 col-lg-1" href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website">Go to tutorial</a>
+  </footer>
 </body>
 </html>
