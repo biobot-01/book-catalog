@@ -1,0 +1,23 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ block.super }} | Author List{% endblock %}
+
+{% block content %}
+  <h1 class="section double-padded">Author List</h1>
+
+  <div class="section">
+    <p>Display all authors in Local Library.</p>
+
+    {% if author_list %}
+      <ul>
+        {% for author in author_list %}
+          <li>
+            <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>There are no authors available.</p>
+    {% endif %}
+  </div>
+{% endblock %}

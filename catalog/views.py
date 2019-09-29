@@ -40,3 +40,18 @@ class BookDetailView(generic.DetailView):
     """View class for book detail page of site."""
 
     model = Book
+
+
+class AuthorListView(generic.ListView):
+    """View class for authors page of site."""
+
+    model = Author
+    context_object_name = 'author_list'
+    queryset = Author.objects.all()
+    paginate_by = 5
+
+
+class AuthorDetailView(generic.DetailView):
+    """View class for auhtor detail page of site."""
+
+    model = Author
