@@ -15,6 +15,9 @@ def index(request):
     number_of_authors = Author.objects.count()
     number_of_genres = Genre.objects.count()
     books_match_word = Book.objects.filter(title__contains='the').count()
+    # Number of visits to this view, as counted in the session variable
+    number_of_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = number_of_visits + 1
     context = {
         'books_count': number_of_books,
         'instances_count': number_of_book_instances,
@@ -22,6 +25,7 @@ def index(request):
         'authors_count': number_of_authors,
         'genres_count': number_of_genres,
         'books_word_match_count': books_match_word,
+        'visits_count': number_of_visits,
     }
     # Render the html template index.html with the data in the context variable
     return render(request, 'catalog/index.html', context=context)

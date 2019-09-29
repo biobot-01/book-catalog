@@ -29,5 +29,7 @@
         <strong>Books with the word "the":</strong> {{ books_word_match_count }}
       </li>
     </ul>
+
+    <p>You have visited this page {{ visits_count }} {% if visits_count == 1 %}time{% else %}times{% endif %}.</p>
   </div>
 {% endblock %}
