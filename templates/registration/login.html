@@ -1,0 +1,51 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ block.super }} | Login{% endblock %}
+
+{% block content %}
+  {% if form.errors %}
+    <p class="section">Your username and password does not match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p class="section">Your account does not have access to this page. To proceed, please login with an account that has access.</p>
+    {% else %}
+      <p class="section">Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <form class="section" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Login Form</legend>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          {{ form.username.label_tag }}
+        </div>
+
+        <div class="col-sm-12 col-md">
+          {{ form.username }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          {{ form.password.label_tag }}
+        </div>
+
+        <div class="col-sm-12 col-md">
+          {{ form.password }}
+        </div>
+      </div>
+
+      <button type="submit">Login</button>
+      <input type="hidden" name="next" value="{{ next }}">
+    </fieldset>
+
+    <p>
+      <a href="{% url 'password_reset' %}">Lost password?</a>
+    </p>
+  </form>
+{% endblock %}
