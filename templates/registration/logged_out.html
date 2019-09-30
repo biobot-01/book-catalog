@@ -1,0 +1,11 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ block.super }} | Logout{% endblock %}
+
+{% block content %}
+  <div class="section">
+    <p>Logged Out!</p>
+
+    <a href="{% url 'login' %}">Click here to login again.</a>
+  </div>
+{% endblock %}
