@@ -120,7 +120,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # Redirect to home URL after login
 # Default redirects to /accounts/profile/
 
 LOGIN_REDIRECT_URL = '/'
+
+
+# Email testing
+# Log emails to console
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
